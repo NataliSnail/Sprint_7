@@ -6,7 +6,7 @@ from data.urls import TestBaseLinksAPI
 from data.urls import TestOrdersLinksAPI
 
 class TestOrdersListAPI:
-    @allure.description('Проверить получение списка заказов| GET /api/v1/orders')
+    @allure.description('Проверить получение списка заказов|GET | MAIN_ORDERS_URL')
     @allure.title('Успешное получение списка заказов')
     def test_check_orders_list(self):
         response = requests.get(TestBaseLinksAPI.MAIN_URL + TestOrdersLinksAPI.MAIN_ORDERS_URL)
