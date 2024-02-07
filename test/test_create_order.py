@@ -6,9 +6,12 @@ from data.test_data import TestCourier, CourierErrors,TestOrder
 from data.urls import TestBaseLinksAPI
 from data.urls import TestCourierLinksAPI
 from data.urls import TestOrdersLinksAPI
+import random
+from faker import Faker
+
 
 class TestCreateOrderAPI:
-    @allure.description('Проверка создания заказа с разными цветами | POST /api/v1/orders')
+    @allure.description('Проверка создания заказа с разными цветами | POST| MAIN_ORDERS_URL')
     @allure.title('Успешное создание заказа c разными цветами')
     @pytest.mark.parametrize('color', (["BLACK"], ["GREY"], ["BLACK", "GREY"], []))
     def test_create_order(self, color):
@@ -18,7 +21,7 @@ class TestCreateOrderAPI:
         assert response.status_code == 201 and 'track' in response.text
 
 
-    @allure.description('Проверка получения данных о заказе(трэк номера) | GET /api/v1/orders/track')
+    @allure.description('Проверка получения данных о заказе(трэк номера) | GET | TRACK_ORDER_URL')
     @allure.title('Успешное получение данных о заказе')
     def test_order_tracking_successful(self):
         new_track = return_new_order()
