@@ -1,5 +1,7 @@
 import datetime
 from datetime import date as d
+import random
+from faker import Faker
 
 
 class TestCourier:
@@ -17,20 +19,18 @@ class TestCourier:
 
 
 class TestOrder:
-    test_order = {"order":
-{
-    "firstName": "Harry",
-    "lastName": "Potter",
-    "address": "Privet drive, 4 ",
-    "metroStation": 4,
-    "phone": "+7 999 888 77 66",
-    "rentTime": 5,
-    "deliveryDate": "2022-02-22",
-    "comment": "test comment",
-    "color": ["BLACK"]
- }
-    }
-
+    fake = Faker("ru_RU")
+    test_order = {
+            "firstName": fake.first_name(),
+            "lastName": fake.last_name(),
+            "address": fake.address(),
+            "metroStation": random.randint(0, 20),
+            "phone": fake.phone_number(),
+            "rentTime": random.randint(0, 24),
+            "deliveryDate": fake.date(),
+            "comment": fake.text(),
+            "color": ["BLACK","Grey"]
+        }
 
 class CourierErrors:
     create_no_data = "Недостаточно данных для создания учетной записи"
